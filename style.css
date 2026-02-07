@@ -330,9 +330,9 @@ body {
 /* Vote / Interest button */
 .vote-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .btn-vote {
