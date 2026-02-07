@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lehi 39th EQ Activities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Lehi 39th EQ Activities</h1>
+      <p class="site-subtitle">Sign up. Show up.</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <section class="section active-section">
+      <div class="section-label">
+        <span class="section-dot active-dot"></span>
+        Happening
+      </div>
+      <div class="card-grid" id="active-grid">
+        <!-- Active cards injected by JS -->
+      </div>
+    </section>
+
+    <section class="section interest-section">
+      <div class="section-label">
+        <span class="section-dot interest-dot"></span>
+        Gauging Interest
+      </div>
+      <p class="section-desc">Would you show up? Tap 👍 so we know what to plan next.</p>
+      <div class="card-grid" id="interest-grid">
+        <!-- Interest cards injected by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sign-up Modal -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h2 class="modal-title" id="modal-title">Sign Up</h2>
+      <p class="modal-activity" id="modal-activity"></p>
+      <form id="signup-form" autocomplete="off">
+        <label for="signup-name" class="sr-only">Your name</label>
+        <input
+          type="text"
+          id="signup-name"
+          name="name"
+          placeholder="First and last name"
+          required
+          minlength="2"
+          maxlength="60"
+          autocomplete="off"
+        >
+        <button type="submit" class="btn-submit" id="btn-submit">
+          <span class="btn-text">Count me in</span>
+          <span class="btn-loading" aria-hidden="true">
+            <span class="spinner"></span>
+          </span>
+        </button>
+      </form>
+      <p class="modal-error" id="modal-error" role="alert"></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Lehi 39th Ward Elders Quorum &middot; <span id="footer-year"></span></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

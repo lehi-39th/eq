@@ -1,0 +1,599 @@
+/* ==========================================================================
+   Lehi 39th EQ Activities — "Campfire Community" aesthetic
+   Warm, earthy, hand-crafted feel. Like a bulletin board at the rec center.
+   ========================================================================== */
+
+:root {
+  /* Palette */
+  --cream:       #faf6f0;
+  --warm-white:  #f5efe6;
+  --sand:        #e8dfd3;
+  --clay:        #c9b99a;
+  --bark:        #6b5b4e;
+  --charcoal:    #3a3330;
+  --terracotta:  #c4603c;
+  --terracotta-light: #e8856a;
+  --forest:      #4a7c59;
+  --forest-dark: #3a6147;
+  --moss:        #8aad6e;
+  --sky:         #5b9ec4;
+  --amber:       #d4a03c;
+  --badge-interest: #e6c86e;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+
+  /* Layout */
+  --max-width: 72rem;
+  --card-radius: 1rem;
+  --radius-sm: 0.5rem;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background-color: var(--cream);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Subtle paper grain */
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  background: var(--charcoal);
+  color: var(--cream);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 80% at 20% 90%, rgba(196,96,60,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 60% at 80% 10%, rgba(74,124,89,0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.site-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-top: var(--space-xs);
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   Main Content
+   ========================================================================== */
+
+.main-content {
+  flex: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  width: 100%;
+}
+
+/* Sections */
+.section {
+  margin-bottom: var(--space-2xl);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  font-variation-settings: 'opsz' 40;
+  margin-bottom: var(--space-sm);
+  color: var(--bark);
+}
+
+.section-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.active-dot {
+  background: var(--forest);
+  box-shadow: 0 0 0 3px rgba(74,124,89,0.25);
+}
+
+.interest-dot {
+  background: var(--amber);
+  box-shadow: 0 0 0 3px rgba(212,160,60,0.25);
+}
+
+.section-desc {
+  color: var(--bark);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+  opacity: 0.8;
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 36rem) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 60rem) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Activity Cards
+   ========================================================================== */
+
+.activity-card {
+  background: var(--warm-white);
+  border: 1.5px solid var(--sand);
+  border-radius: var(--card-radius);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.activity-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(58,51,48,0.08);
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.card-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-variation-settings: 'opsz' 40;
+  line-height: 1.25;
+  color: var(--charcoal);
+}
+
+/* Card details */
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--bark);
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--bark);
+  opacity: 0.75;
+  font-style: italic;
+}
+
+.card-detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.card-detail-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Interest badge */
+.badge-interest {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--badge-interest);
+  color: var(--charcoal);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+/* Vote / Interest button */
+.vote-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-vote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  background: transparent;
+  border: 1.5px solid var(--sand);
+  border-radius: 999px;
+  padding: 0.4em 0.9em;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--bark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-vote:hover {
+  background: var(--sand);
+  border-color: var(--clay);
+}
+
+.btn-vote.voted {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+}
+
+.btn-vote.voted:hover {
+  background: var(--forest-dark);
+}
+
+.vote-count {
+  font-size: 0.8rem;
+  color: var(--clay);
+  font-weight: 500;
+}
+
+/* Interest prompt */
+.interest-prompt {
+  font-size: 0.85rem;
+  color: var(--bark);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Names list */
+.names-section {
+  border-top: 1px solid var(--sand);
+  padding-top: var(--space-md);
+}
+
+.names-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clay);
+  margin-bottom: var(--space-sm);
+}
+
+.names-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.name-chip {
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  border-radius: 999px;
+  padding: 0.2em 0.7em;
+  font-size: 0.8rem;
+  color: var(--bark);
+  font-weight: 500;
+}
+
+.names-empty {
+  font-size: 0.8rem;
+  color: var(--clay);
+  font-style: italic;
+}
+
+/* Sign-up button */
+.btn-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.75em 1em;
+  background: var(--terracotta);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: auto;
+}
+
+.btn-signup:hover {
+  background: var(--terracotta-light);
+}
+
+.btn-signup:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(58,51,48,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--cream);
+  border-radius: var(--card-radius);
+  padding: var(--space-xl);
+  width: 100%;
+  max-width: 24rem;
+  position: relative;
+  transform: translateY(12px) scale(0.97);
+  transition: transform 0.25s ease;
+  box-shadow: 0 20px 60px rgba(58,51,48,0.2);
+}
+
+.modal-backdrop.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--clay);
+  cursor: pointer;
+  line-height: 1;
+  padding: var(--space-xs);
+  transition: color 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--charcoal);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-variation-settings: 'opsz' 72;
+  margin-bottom: var(--space-xs);
+}
+
+.modal-activity {
+  font-size: 0.95rem;
+  color: var(--bark);
+  margin-bottom: var(--space-lg);
+}
+
+#signup-name {
+  width: 100%;
+  padding: 0.75em 1em;
+  border: 1.5px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--charcoal);
+  background: var(--warm-white);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+#signup-name:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(196,96,60,0.15);
+}
+
+#signup-name::placeholder {
+  color: var(--clay);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75em 1em;
+  margin-top: var(--space-md);
+  background: var(--forest);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  position: relative;
+}
+
+.btn-submit:hover {
+  background: var(--forest-dark);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.btn-submit.loading .btn-text {
+  visibility: hidden;
+}
+
+.btn-submit .btn-loading {
+  display: none;
+}
+
+.btn-submit.loading .btn-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.modal-error {
+  color: var(--terracotta);
+  font-size: 0.85rem;
+  margin-top: var(--space-sm);
+  min-height: 1.2em;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  font-size: 0.8rem;
+  color: var(--clay);
+  border-top: 1px solid var(--sand);
+}
+
+/* ==========================================================================
+   Animations — card entrance
+   ========================================================================== */
+
+.activity-card {
+  animation: cardIn 0.4s ease both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delays set via JS with inline style */
+
+/* ==========================================================================
+   Responsive tweaks
+   ========================================================================== */
+
+@media (max-width: 35.99rem) {
+  .main-content {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .activity-card {
+    padding: var(--space-md);
+  }
+}
