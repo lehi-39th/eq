@@ -18,13 +18,19 @@ const activities = [
     status: 'active',
     showVote: false,
     showSignup: false,
+    lesson: {
+      date: 'Feb 8',
+      title: 'Beware of the Evil behind the Smiling Eyes',
+      author: 'Elder Neil L. Andersen',
+      url: 'https://www.churchofjesuschrist.org/study/general-conference/2005/04/beware-of-the-evil-behind-the-smiling-eyes?lang=eng',
+    },
   },
   {
     id: 'softball',
     emoji: '🥎',
     title: 'Softball',
     schedule: '7 Saturdays: Apr 11 – May 23',
-    location: 'Ward field',
+    location: 'Copper Top building',
     status: 'active',
     showVote: true,
   },
@@ -33,7 +39,7 @@ const activities = [
     emoji: '🍔',
     title: 'WFH Rotating Lunch',
     schedule: '45 min · TBD',
-    location: 'Rotating spots',
+    location: 'Delivery at home or local restaurant',
     status: 'interest',
     showVote: true,
   },
@@ -171,10 +177,17 @@ function cardHTML(activity, index) {
     ? `<p class="card-desc">${escapeHTML(activity.description)}</p>`
     : '';
 
+  const lessonHTML = activity.lesson ? `
+    <div class="card-lesson">
+      <div class="lesson-date">${activity.lesson.date}</div>
+      <a href="${activity.lesson.url}" target="_blank" rel="noopener" class="lesson-title">${escapeHTML(activity.lesson.title)}</a>
+      <div class="lesson-author">${escapeHTML(activity.lesson.author)}</div>
+    </div>` : '';
+
   const voteHTML = activity.showVote ? `
     <div class="vote-row">
       <button class="btn-vote${hasVoted ? ' voted' : ''}" data-activity="${activity.id}">
-        👍 Interested
+        ✋ I'm interested
       </button>
       <span class="vote-count" id="vote-count-${activity.id}">${voteCount > 0 ? voteCount + ' interested' : ''}</span>
     </div>` : '';
@@ -195,12 +208,12 @@ function cardHTML(activity, index) {
     ? `<button class="btn-signup" data-activity="${activity.id}">Sign Up</button>`
     : '';
 
-  const badgeHTML = !isActive
-    ? '<div class="badge-interest">Gauging Interest</div>'
-    : '';
+  const badgeHTML = isActive
+    ? '<div class="badge-active">Happening</div>'
+    : '<div class="badge-interest">Gauging Interest</div>';
 
   const interestPromptHTML = !isActive
-    ? '<p class="interest-prompt">Would you do this? Tap 👍 to let us know.</p>'
+    ? '<p class="interest-prompt">Would you do this? Tap ✋ to let us know.</p>'
     : '';
 
   return `
@@ -211,6 +224,7 @@ function cardHTML(activity, index) {
       </div>
       ${badgeHTML}
       ${detailsHTML}
+      ${lessonHTML}
       ${descHTML}
       ${voteHTML}
       ${isActive ? namesHTML : interestPromptHTML}
