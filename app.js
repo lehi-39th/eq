@@ -18,6 +18,8 @@ const activities = [
     status: 'active',
     showVote: false,
     showSignup: false,
+    domains: ['Spiritual', 'Intellectual'],
+    capacity: '~50',
     lesson: {
       date: 'Feb 8',
       title: 'Beware of the Evil behind the Smiling Eyes',
@@ -33,6 +35,8 @@ const activities = [
     location: 'Copper Top building',
     status: 'active',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~20',
   },
   {
     id: 'rotating-lunch',
@@ -42,6 +46,8 @@ const activities = [
     location: 'Delivery at home or local restaurant',
     status: 'interest',
     showVote: true,
+    domains: ['Social'],
+    capacity: '4–8',
   },
   {
     id: 'hobby-nights',
@@ -52,6 +58,8 @@ const activities = [
     description: 'Knife making, woodworking, using AI, etc.',
     status: 'interest',
     showVote: true,
+    domains: ['Intellectual', 'Social'],
+    capacity: '5–10',
   },
   {
     id: 'morning-pickleball',
@@ -61,6 +69,8 @@ const activities = [
     location: 'Stake center courts',
     status: 'interest',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~12',
   },
   {
     id: 'morning-basketball',
@@ -70,6 +80,8 @@ const activities = [
     location: 'Stake center gym',
     status: 'interest',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~15',
   },
   {
     id: 'evening-pickleball',
@@ -79,6 +91,8 @@ const activities = [
     location: 'Stake center courts',
     status: 'interest',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~12',
   },
   {
     id: 'evening-basketball',
@@ -88,6 +102,8 @@ const activities = [
     location: 'Stake center gym',
     status: 'interest',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~15',
   },
   {
     id: 'pinewood-derby',
@@ -97,6 +113,8 @@ const activities = [
     location: 'TBD',
     status: 'interest',
     showVote: true,
+    domains: ['Intellectual', 'Social'],
+    capacity: '~25',
   },
   {
     id: 'mountain-biking',
@@ -106,6 +124,8 @@ const activities = [
     location: 'Rotating trailheads',
     status: 'interest',
     showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '3–10',
   },
 ];
 
@@ -157,6 +177,18 @@ function cardHTML(activity, index) {
   const voteCount = votes[activity.id] || 0;
   const hasVoted = localStorage.getItem(`vote_${activity.id}`) === '1';
 
+  const domainHTML = (activity.domains || []).length > 0
+    ? `<div class="domain-tags">${activity.domains.map(d => `<span class="domain-tag domain-${d.toLowerCase()}">${d}</span>`).join('')}</div>`
+    : '';
+
+  const capacityHTML = activity.capacity ? `
+      <div class="card-detail">
+        <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="5" r="2.5"/><path d="M3 14c0-2.8 2.2-5 5-5s5 2.2 5 5"/>
+        </svg>
+        <span>${activity.capacity} people</span>
+      </div>` : '';
+
   const detailsHTML = `
     <div class="card-details">
       <div class="card-detail">
@@ -171,6 +203,7 @@ function cardHTML(activity, index) {
         </svg>
         <span>${activity.location}</span>
       </div>
+      ${capacityHTML}
     </div>`;
 
   const descHTML = activity.description
@@ -221,6 +254,7 @@ function cardHTML(activity, index) {
         <span class="card-title">${activity.title}</span>
       </div>
       ${badgeHTML}
+      ${domainHTML}
       ${detailsHTML}
       ${lessonHTML}
       ${descHTML}
@@ -373,6 +407,61 @@ function updateVoteUI(activityId) {
   const count = votes[activityId] || 0;
   el.textContent = count > 0 ? `${count} interested` : '';
 }
+
+// ── Idea Modal ──────────────────────────────────────────────────────
+const ideaBackdrop   = document.getElementById('idea-modal-backdrop');
+const ideaClose      = document.getElementById('idea-modal-close');
+const ideaForm       = document.getElementById('idea-form');
+const ideaText       = document.getElementById('idea-text');
+const btnIdeaSubmit  = document.getElementById('btn-idea-submit');
+const ideaError      = document.getElementById('idea-modal-error');
+
+document.getElementById('btn-idea').addEventListener('click', openIdeaModal);
+
+function openIdeaModal() {
+  ideaError.textContent = '';
+  ideaText.value = '';
+  ideaBackdrop.classList.add('open');
+  ideaBackdrop.setAttribute('aria-hidden', 'false');
+  setTimeout(() => ideaText.focus(), 250);
+}
+
+function closeIdeaModal() {
+  ideaBackdrop.classList.remove('open');
+  ideaBackdrop.setAttribute('aria-hidden', 'true');
+  btnIdeaSubmit.classList.remove('loading');
+}
+
+ideaClose.addEventListener('click', closeIdeaModal);
+ideaBackdrop.addEventListener('click', (e) => {
+  if (e.target === ideaBackdrop) closeIdeaModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeIdeaModal();
+});
+
+ideaForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const text = ideaText.value.trim();
+  if (!text) return;
+
+  ideaError.textContent = '';
+  btnIdeaSubmit.classList.add('loading');
+
+  try {
+    await fetch(API_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'idea', text }),
+    });
+  } catch (err) {
+    console.error('Idea POST failed:', err);
+  }
+
+  btnIdeaSubmit.classList.remove('loading');
+  closeIdeaModal();
+});
 
 // ── Helpers ──────────────────────────────────────────────────────────────
 function escapeHTML(str) {

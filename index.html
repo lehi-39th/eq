@@ -15,7 +15,10 @@
   <header class="site-header">
     <div class="header-inner">
       <h1 class="site-title">Lehi 39th EQ Activities</h1>
-      <p class="site-subtitle">Connect. Learn. Grow.</p>
+      <div class="site-framework">
+<p class="site-scripture">"And Jesus increased in wisdom and stature, and in favour with God and man." — Luke 2:52</p>
+        <p class="site-framework-desc">Jesus Christ developed in all areas of His life: spiritually (favor with God), socially (favor with man), physically (stature), and intellectually (wisdom). We strive to as well.</p>
+      </div>
     </div>
   </header>
 
@@ -36,13 +39,48 @@
         <span class="section-dot interest-dot"></span>
         Gauging Interest
       </div>
-      <p class="section-desc">Tap ✋ to let us know what to plan next.</p>
+      <p class="section-desc">Tap ✋ to let us know if this sounds like something you'd do.</p>
       <div class="card-grid" id="interest-grid">
         <!-- Interest cards injected by JS -->
       </div>
     </section>
 
+    <section class="section idea-section">
+      <div class="idea-card">
+        <span class="card-emoji">💡</span>
+        <h2 class="idea-card-title">Share Your Ideas</h2>
+        <button class="btn-idea" id="btn-idea">Share an Idea</button>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Idea Modal -->
+  <div class="modal-backdrop" id="idea-modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="idea-modal-title">
+      <button class="modal-close" id="idea-modal-close" aria-label="Close">&times;</button>
+      <h2 class="modal-title" id="idea-modal-title">Share Your Ideas</h2>
+      <form id="idea-form" autocomplete="off">
+        <label for="idea-text" class="sr-only">Your idea</label>
+        <textarea
+          id="idea-text"
+          name="idea"
+          placeholder=""
+          required
+          minlength="2"
+          maxlength="500"
+          rows="4"
+        ></textarea>
+        <button type="submit" class="btn-submit" id="btn-idea-submit">
+          <span class="btn-text">Submit</span>
+          <span class="btn-loading" aria-hidden="true">
+            <span class="spinner"></span>
+          </span>
+        </button>
+      </form>
+      <p class="modal-error" id="idea-modal-error" role="alert"></p>
+    </div>
+  </div>
 
   <!-- Sign-up Modal -->
   <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
