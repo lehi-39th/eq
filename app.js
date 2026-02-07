@@ -212,9 +212,7 @@ function cardHTML(activity, index) {
     ? '<div class="badge-active">Happening</div>'
     : '<div class="badge-interest">Gauging Interest</div>';
 
-  const interestPromptHTML = !isActive
-    ? '<p class="interest-prompt">Would you do this? Tap ✋ to let us know.</p>'
-    : '';
+  const interestPromptHTML = '';
 
   return `
     <div class="activity-card" style="animation-delay: ${index * 0.06}s" data-id="${activity.id}">
