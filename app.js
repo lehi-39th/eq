@@ -408,37 +408,11 @@ function updateVoteUI(activityId) {
   el.textContent = count > 0 ? `${count} interested` : '';
 }
 
-// ── Idea Modal ──────────────────────────────────────────────────────
-const ideaBackdrop   = document.getElementById('idea-modal-backdrop');
-const ideaClose      = document.getElementById('idea-modal-close');
-const ideaForm       = document.getElementById('idea-form');
-const ideaText       = document.getElementById('idea-text');
-const btnIdeaSubmit  = document.getElementById('btn-idea-submit');
-const ideaError      = document.getElementById('idea-modal-error');
-
-document.getElementById('btn-idea').addEventListener('click', openIdeaModal);
-
-function openIdeaModal() {
-  ideaError.textContent = '';
-  ideaText.value = '';
-  ideaBackdrop.classList.add('open');
-  ideaBackdrop.setAttribute('aria-hidden', 'false');
-  setTimeout(() => ideaText.focus(), 250);
-}
-
-function closeIdeaModal() {
-  ideaBackdrop.classList.remove('open');
-  ideaBackdrop.setAttribute('aria-hidden', 'true');
-  btnIdeaSubmit.classList.remove('loading');
-}
-
-ideaClose.addEventListener('click', closeIdeaModal);
-ideaBackdrop.addEventListener('click', (e) => {
-  if (e.target === ideaBackdrop) closeIdeaModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeIdeaModal();
-});
+// ── Idea Form ───────────────────────────────────────────────────────
+const ideaForm      = document.getElementById('idea-form');
+const ideaText      = document.getElementById('idea-text');
+const btnIdeaSubmit = document.getElementById('btn-idea-submit');
+const ideaError     = document.getElementById('idea-modal-error');
 
 ideaForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -460,7 +434,7 @@ ideaForm.addEventListener('submit', async (e) => {
   }
 
   btnIdeaSubmit.classList.remove('loading');
-  closeIdeaModal();
+  ideaText.value = '';
 });
 
 // ── Helpers ──────────────────────────────────────────────────────────────

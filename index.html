@@ -49,38 +49,29 @@
       <div class="idea-card">
         <span class="card-emoji">💡</span>
         <h2 class="idea-card-title">Share Your Ideas</h2>
-        <button class="btn-idea" id="btn-idea">Share an Idea</button>
+        <form id="idea-form" autocomplete="off">
+          <label for="idea-text" class="sr-only">Your idea</label>
+          <textarea
+            id="idea-text"
+            name="idea"
+            placeholder="Activities, lessons, service opportunities, etc."
+            required
+            minlength="2"
+            maxlength="500"
+            rows="3"
+          ></textarea>
+          <button type="submit" class="btn-submit" id="btn-idea-submit">
+            <span class="btn-text">Submit</span>
+            <span class="btn-loading" aria-hidden="true">
+              <span class="spinner"></span>
+            </span>
+          </button>
+        </form>
+        <p class="modal-error" id="idea-modal-error" role="alert"></p>
       </div>
     </section>
 
   </main>
-
-  <!-- Idea Modal -->
-  <div class="modal-backdrop" id="idea-modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-labelledby="idea-modal-title">
-      <button class="modal-close" id="idea-modal-close" aria-label="Close">&times;</button>
-      <h2 class="modal-title" id="idea-modal-title">Share Your Ideas</h2>
-      <form id="idea-form" autocomplete="off">
-        <label for="idea-text" class="sr-only">Your idea</label>
-        <textarea
-          id="idea-text"
-          name="idea"
-          placeholder=""
-          required
-          minlength="2"
-          maxlength="500"
-          rows="4"
-        ></textarea>
-        <button type="submit" class="btn-submit" id="btn-idea-submit">
-          <span class="btn-text">Submit</span>
-          <span class="btn-loading" aria-hidden="true">
-            <span class="spinner"></span>
-          </span>
-        </button>
-      </form>
-      <p class="modal-error" id="idea-modal-error" role="alert"></p>
-    </div>
-  </div>
 
   <!-- Sign-up Modal -->
   <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">

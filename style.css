@@ -685,32 +685,19 @@ body {
   color: var(--charcoal);
 }
 
-.btn-idea {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65em 1.5em;
-  background: var(--terracotta);
-  color: white;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  -webkit-tap-highlight-color: transparent;
+.idea-card form {
+  width: 100%;
 }
 
-.btn-idea:hover {
+.idea-card .btn-submit {
+  background: var(--terracotta);
+}
+
+.idea-card .btn-submit:hover {
   background: var(--terracotta-light);
 }
 
-.btn-idea:active {
-  transform: scale(0.98);
-}
-
-/* Idea modal textarea */
+/* Idea textarea */
 #idea-text {
   width: 100%;
   padding: 0.75em 1em;
