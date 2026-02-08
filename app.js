@@ -28,6 +28,19 @@ const activities = [
     },
   },
   {
+    id: 'ward-temple-night',
+    emoji: '',
+    emojiImg: 'images/lds-temple-stylized-waiting-christ-600nw-2125612112.webp',
+    title: 'Ward Temple Night',
+    schedule: 'Quarterly',
+    location: 'Saratoga Springs Temple',
+    status: 'active',
+    showVote: false,
+    showSignup: false,
+    domains: ['Spiritual', 'Social'],
+    capacity: '5–20',
+  },
+  {
     id: 'softball',
     emoji: '🥎',
     title: 'Softball',
@@ -42,7 +55,7 @@ const activities = [
     id: 'rotating-lunch',
     emoji: '🍔',
     title: 'WFH Rotating Lunch',
-    schedule: '45 min · TBD',
+    schedule: '12:05–12:50 PM · Weekday TBD',
     location: 'Delivery at home or local restaurant',
     status: 'interest',
     showVote: true,
@@ -115,6 +128,40 @@ const activities = [
     showVote: true,
     domains: ['Intellectual', 'Social'],
     capacity: '~25',
+  },
+  {
+    id: 'bowling',
+    emoji: '🎳',
+    title: 'Bowling',
+    schedule: 'Weeknight · TBD',
+    location: 'Jack & Jill Lanes · 113 S 600 E, Lehi',
+    status: 'interest',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '3–6',
+  },
+  {
+    id: 'rotating-home-project',
+    emoji: '🔨',
+    title: 'Rotating Home Projects',
+    schedule: 'Saturdays · TBD',
+    location: 'Rotating homes',
+    description: '3–5 elders help each other finish a home project.',
+    status: 'interest',
+    showVote: true,
+    domains: ['Social', 'Intellectual'],
+    capacity: '3–5',
+  },
+  {
+    id: 'road-biking',
+    emoji: '🚴',
+    title: 'Road Biking',
+    schedule: 'Saturdays · 7 AM · Apr–Oct',
+    location: 'Rotating routes',
+    status: 'interest',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '3–10',
   },
   {
     id: 'mountain-biking',
@@ -250,7 +297,9 @@ function cardHTML(activity, index) {
   return `
     <div class="activity-card" style="animation-delay: ${index * 0.06}s" data-id="${activity.id}">
       <div class="card-header">
-        <span class="card-emoji">${activity.emoji}</span>
+        ${activity.emojiImg
+          ? `<img class="card-emoji-img" src="${activity.emojiImg}" alt="">`
+          : `<span class="card-emoji">${activity.emoji}</span>`}
         <span class="card-title">${activity.title}</span>
       </div>
       ${badgeHTML}

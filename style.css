@@ -241,6 +241,18 @@ body {
   margin-top: 2px;
 }
 
+.card-emoji-img {
+  width: 1.6rem;
+  height: 1.6rem;
+  max-width: 1.6rem;
+  max-height: 1.6rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 50%;
+  background: var(--warm-white);
+}
+
 .card-title {
   font-family: var(--font-body);
   font-weight: 700;
