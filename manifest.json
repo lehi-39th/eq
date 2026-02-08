@@ -1,0 +1,17 @@
+{
+  "name": "Lehi 39th EQ Activities",
+  "short_name": "39th EQ",
+  "description": "Activity sign-ups and interest tracking for the Lehi 39th Ward Elders Quorum.",
+  "start_url": "/eq/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#3a3330",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
