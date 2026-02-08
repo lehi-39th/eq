@@ -697,6 +697,10 @@ body {
   background: var(--terracotta-light);
 }
 
+.idea-card .btn-submit.success {
+  background: var(--forest);
+}
+
 /* Idea textarea */
 #idea-text {
   width: 100%;

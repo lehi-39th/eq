@@ -420,21 +420,23 @@ ideaForm.addEventListener('submit', async (e) => {
   if (!text) return;
 
   ideaError.textContent = '';
-  btnIdeaSubmit.classList.add('loading');
-
-  try {
-    await fetch(API_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'idea', text }),
-    });
-  } catch (err) {
-    console.error('Idea POST failed:', err);
-  }
-
-  btnIdeaSubmit.classList.remove('loading');
   ideaText.value = '';
+
+  // Show success immediately
+  btnIdeaSubmit.querySelector('.btn-text').textContent = 'Thanks!';
+  btnIdeaSubmit.classList.add('success');
+  setTimeout(() => {
+    btnIdeaSubmit.querySelector('.btn-text').textContent = 'Submit';
+    btnIdeaSubmit.classList.remove('success');
+  }, 2000);
+
+  // Fire-and-forget POST
+  fetch(API_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ action: 'idea', text }),
+  }).catch(err => console.error('Idea POST failed:', err));
 });
 
 // ── Helpers ──────────────────────────────────────────────────────────────
