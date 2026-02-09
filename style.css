@@ -175,6 +175,11 @@ body {
   box-shadow: 0 0 0 3px rgba(74,124,89,0.25);
 }
 
+.soon-dot {
+  background: var(--sky);
+  box-shadow: 0 0 0 3px rgba(91,158,196,0.25);
+}
+
 .interest-dot {
   background: var(--amber);
   box-shadow: 0 0 0 3px rgba(212,160,60,0.25);
@@ -414,6 +419,21 @@ body {
   align-items: center;
   gap: var(--space-xs);
   background: var(--forest);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.badge-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--sky);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;

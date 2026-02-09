@@ -41,17 +41,6 @@ const activities = [
     capacity: '5–20',
   },
   {
-    id: 'softball',
-    emoji: '🥎',
-    title: 'Softball',
-    schedule: '7 Saturdays: Apr 11 – May 23',
-    location: 'Copper Top building',
-    status: 'active',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '~20',
-  },
-  {
     id: 'rotating-lunch',
     emoji: '🍔',
     title: 'WFH Rotating Lunch',
@@ -89,7 +78,7 @@ const activities = [
     title: 'Morning Pickleball',
     schedule: '6–8 AM',
     location: 'Stake center courts',
-    status: 'interest',
+    status: 'soon',
     showVote: true,
     domains: ['Physical', 'Social'],
     capacity: '~12',
@@ -111,10 +100,21 @@ const activities = [
     title: 'Evening Pickleball',
     schedule: '8:30–10:30 PM',
     location: 'Stake center courts',
-    status: 'interest',
+    status: 'soon',
     showVote: true,
     domains: ['Physical', 'Social'],
     capacity: '~12',
+  },
+  {
+    id: 'softball',
+    emoji: '🥎',
+    title: 'Softball',
+    schedule: '7 Saturdays: Apr 11 – May 23',
+    location: 'Copper Top building',
+    status: 'soon',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~20',
   },
   {
     id: 'evening-basketball',
@@ -126,6 +126,17 @@ const activities = [
     showVote: true,
     domains: ['Physical', 'Social'],
     capacity: '~15',
+  },
+  {
+    id: 'evening-volleyball',
+    emoji: '🏐',
+    title: 'Evening Volleyball',
+    schedule: '8:30–10:30 PM',
+    location: 'Stake center gym',
+    status: 'interest',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~12',
   },
   {
     id: 'pinewood-derby',
@@ -183,6 +194,28 @@ const activities = [
     domains: ['Physical', 'Social'],
     capacity: '3–10',
   },
+  {
+    id: 'board-game-night',
+    emoji: '🎲',
+    title: 'Board Game Night',
+    schedule: 'Friday or Saturday evening · TBD',
+    location: 'TBD',
+    status: 'interest',
+    showVote: true,
+    domains: ['Social', 'Intellectual'],
+    capacity: '5–15',
+  },
+  {
+    id: 'rock-climbing',
+    emoji: '🧗',
+    title: 'Rock Climbing',
+    schedule: 'TBD',
+    location: 'Momentum Climbing · 401 S 850 E, Lehi',
+    status: 'interest',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '5–15',
+  },
 ];
 
 // ── State ────────────────────────────────────────────────────────────────
@@ -192,6 +225,7 @@ let currentActivityId = null;
 
 // ── DOM refs ─────────────────────────────────────────────────────────────
 const activeGrid    = document.getElementById('active-grid');
+const soonGrid      = document.getElementById('soon-grid');
 const interestGrid  = document.getElementById('interest-grid');
 const modalBackdrop = document.getElementById('modal-backdrop');
 const modalClose    = document.getElementById('modal-close');
@@ -213,10 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Render cards ─────────────────────────────────────────────────────────
 function renderCards() {
   const activeActivities   = activities.filter(a => a.status === 'active');
+  const soonActivities     = activities.filter(a => a.status === 'soon');
   const interestActivities = activities.filter(a => a.status === 'interest');
 
   activeGrid.innerHTML   = activeActivities.map((a, i) => cardHTML(a, i)).join('');
-  interestGrid.innerHTML = interestActivities.map((a, i) => cardHTML(a, i + activeActivities.length)).join('');
+  soonGrid.innerHTML     = soonActivities.map((a, i) => cardHTML(a, i + activeActivities.length)).join('');
+  interestGrid.innerHTML = interestActivities.map((a, i) => cardHTML(a, i + activeActivities.length + soonActivities.length)).join('');
 
   // Bind event listeners
   document.querySelectorAll('.btn-signup').forEach(btn => {
@@ -295,7 +331,7 @@ function cardHTML(activity, index) {
       <span class="vote-count" id="vote-count-${activity.id}">${voteCount > 0 ? voteCount + ' interested' : ''}</span>
     </div>` : '';
 
-  const canSignup = isActive && activity.showSignup !== false;
+  const canSignup = (isActive || activity.status === 'soon') && activity.showSignup !== false;
 
   const namesHTML = canSignup ? `
     <div class="names-section">
@@ -313,7 +349,9 @@ function cardHTML(activity, index) {
 
   const badgeHTML = isActive
     ? '<div class="badge-active">Happening</div>'
-    : '<div class="badge-interest">Gauging Interest</div>';
+    : activity.status === 'soon'
+      ? '<div class="badge-soon">Coming Soon</div>'
+      : '<div class="badge-interest">Gauging Interest</div>';
 
   const interestPromptHTML = '';
 
@@ -332,7 +370,7 @@ function cardHTML(activity, index) {
       ${descHTML}
       ${rotationHTML}
       ${voteHTML}
-      ${isActive ? namesHTML : interestPromptHTML}
+      ${canSignup ? namesHTML : interestPromptHTML}
       ${signupBtnHTML}
     </div>`;
 }
