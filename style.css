@@ -314,6 +314,49 @@ body {
   font-style: italic;
 }
 
+.card-rotation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.rotation-item {
+  background: var(--cream);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.rotation-date {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--terracotta);
+  margin-bottom: 0.15em;
+}
+
+.rotation-spot {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  text-decoration: none;
+  line-height: 1.3;
+  display: block;
+}
+
+.rotation-spot:hover {
+  text-decoration: underline;
+  color: var(--terracotta);
+}
+
+.rotation-address {
+  font-size: 0.8rem;
+  color: var(--bark);
+  margin-top: 0.15em;
+}
+
 .card-detail {
   display: flex;
   align-items: center;
@@ -586,7 +629,8 @@ body {
   margin-bottom: var(--space-lg);
 }
 
-#signup-name {
+#signup-name,
+#signup-phone {
   width: 100%;
   padding: 0.75em 1em;
   border: 1.5px solid var(--sand);
@@ -599,12 +643,18 @@ body {
   outline: none;
 }
 
-#signup-name:focus {
+#signup-name:focus,
+#signup-phone:focus {
   border-color: var(--terracotta);
   box-shadow: 0 0 0 3px rgba(196,96,60,0.15);
 }
 
-#signup-name::placeholder {
+#signup-phone {
+  margin-top: var(--space-sm);
+}
+
+#signup-name::placeholder,
+#signup-phone::placeholder {
   color: var(--clay);
 }
 

@@ -55,12 +55,21 @@ const activities = [
     id: 'rotating-lunch',
     emoji: '🍔',
     title: 'WFH Rotating Lunch',
-    schedule: '12:05–12:50 PM · Weekday TBD',
-    location: 'Delivery at home or local restaurant',
-    status: 'interest',
+    description: 'Work from home or nearby? Meet up for a quick midweek lunch at a different local spot each week.',
+    schedule: 'Wednesdays · 12–1 PM',
+    location: 'Rotating local spots',
+    status: 'active',
     showVote: true,
     domains: ['Social'],
-    capacity: '4–8',
+    capacity: '5–10',
+    rotation: [
+      { date: 'Feb 12', spot: 'Cafe Rio', address: '821 W State Rd, American Fork' },
+      { date: 'Feb 19', spot: 'Zao Asian Cafe', address: '1249 E Main St, Lehi' },
+      { date: 'Feb 26', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
+      { date: 'Mar 5', spot: 'Costa Vida', address: '643 W Pacific Dr, American Fork' },
+      { date: 'Mar 12', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
+      { date: 'Mar 19', spot: 'Super Chix', address: '643 Pacific Dr, American Fork' },
+    ],
   },
   {
     id: 'hobby-nights',
@@ -190,6 +199,7 @@ const modalActivity = document.getElementById('modal-activity');
 const signupForm    = document.getElementById('signup-form');
 const signupName    = document.getElementById('signup-name');
 const btnSubmit     = document.getElementById('btn-submit');
+const signupPhone   = document.getElementById('signup-phone');
 const modalError    = document.getElementById('modal-error');
 const footerYear    = document.getElementById('footer-year');
 
@@ -264,6 +274,19 @@ function cardHTML(activity, index) {
       <div class="lesson-author">${escapeHTML(activity.lesson.author)}</div>
     </div>` : '';
 
+  const rotationHTML = activity.rotation ? `
+    <div class="card-rotation">
+      ${activity.rotation.map(r => {
+        const mapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(r.address);
+        return `
+        <div class="rotation-item">
+          <div class="rotation-date">${r.date}</div>
+          <a href="${mapsUrl}" target="_blank" rel="noopener" class="rotation-spot">${escapeHTML(r.spot)}</a>
+          <div class="rotation-address">${escapeHTML(r.address)}</div>
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
   const voteHTML = activity.showVote ? `
     <div class="vote-row">
       <button class="btn-vote${hasVoted ? ' voted' : ''}" data-activity="${activity.id}">
@@ -307,6 +330,7 @@ function cardHTML(activity, index) {
       ${detailsHTML}
       ${lessonHTML}
       ${descHTML}
+      ${rotationHTML}
       ${voteHTML}
       ${isActive ? namesHTML : interestPromptHTML}
       ${signupBtnHTML}
@@ -347,6 +371,13 @@ function openModal(activityId) {
   modalActivity.textContent = activity.title;
   modalError.textContent = '';
   signupName.value = '';
+  signupPhone.value = '';
+
+  // Show phone field only for active (Happening) activities
+  const isActive = activity.status === 'active';
+  signupPhone.style.display = isActive ? '' : 'none';
+  signupPhone.required = isActive;
+
   modalBackdrop.classList.add('open');
   modalBackdrop.setAttribute('aria-hidden', 'false');
   setTimeout(() => signupName.focus(), 250);
@@ -371,7 +402,15 @@ document.addEventListener('keydown', (e) => {
 signupForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = signupName.value.trim();
+  const phone = signupPhone.value.trim();
   if (!name) return;
+
+  // Require phone for active activities
+  const activity = activities.find(a => a.id === currentActivityId);
+  if (activity && activity.status === 'active' && !phone) {
+    modalError.textContent = 'Phone number is required so we can group text.';
+    return;
+  }
 
   // Client-side duplicate check
   const existing = signups[currentActivityId] || [];
@@ -383,12 +422,12 @@ signupForm.addEventListener('submit', async (e) => {
   modalError.textContent = '';
   btnSubmit.classList.add('loading');
 
-  // Optimistic UI update
+  // Optimistic UI update (only name shown on card)
   if (!signups[currentActivityId]) signups[currentActivityId] = [];
   signups[currentActivityId].push(name);
   updateNamesUI(currentActivityId);
 
-  // POST to Google Sheets
+  // POST to Google Sheets (phone included for sheet only)
   try {
     await fetch(API_URL, {
       method: 'POST',
@@ -398,6 +437,7 @@ signupForm.addEventListener('submit', async (e) => {
         action: 'signup',
         activity: currentActivityId,
         name: name,
+        phone: phone || '',
       }),
     });
   } catch (err) {
@@ -503,7 +543,7 @@ function escapeHTML(str) {
 // 1. Create a new Google Sheet. Name it whatever you like.
 //
 // 2. Create two tabs (sheets):
-//    - "Signups" with columns: Timestamp | Activity | Name
+//    - "Signups" with columns: Timestamp | Activity | Name | Phone
 //    - "Votes"   with columns: Activity | Count
 //
 // 3. Pre-populate the "Votes" tab with one row per activity:
@@ -554,7 +594,7 @@ function escapeHTML(str) {
 //
 //   if (payload.action === 'signup') {
 //     const sheet = ss.getSheetByName('Signups');
-//     sheet.appendRow([new Date(), payload.activity, payload.name]);
+//     sheet.appendRow([new Date(), payload.activity, payload.name, payload.phone || '']);
 //     return ContentService
 //       .createTextOutput(JSON.stringify({ success: true }))
 //       .setMimeType(ContentService.MimeType.JSON);
