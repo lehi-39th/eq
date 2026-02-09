@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eq-v3';
+const CACHE_NAME = 'eq-v4';
 const ASSETS = [
   '/eq/',
   '/eq/index.html',
@@ -29,7 +29,13 @@ self.addEventListener('fetch', (e) => {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
   } else {
     e.respondWith(
-      caches.match(e.request).then((cached) => cached || fetch(e.request))
+      fetch(e.request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(e.request))
     );
   }
 });
