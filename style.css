@@ -548,7 +548,7 @@ body {
   font-style: italic;
 }
 
-/* Sign-up button */
+/* Sign-up button (also used as <a> for GroupMe links) */
 .btn-signup {
   display: flex;
   align-items: center;
@@ -567,6 +567,8 @@ body {
   transition: background 0.2s ease, transform 0.1s ease;
   -webkit-tap-highlight-color: transparent;
   margin-top: auto;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .btn-signup:hover {
@@ -575,6 +577,40 @@ body {
 
 .btn-signup:active {
   transform: scale(0.98);
+}
+
+/* GroupMe join button */
+.btn-groupme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.6em 1em;
+  background: var(--cream);
+  color: var(--bark);
+  border: 1.5px solid var(--sand);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-groupme:hover {
+  background: var(--sand);
+  border-color: var(--clay);
+}
+
+/* GroupMe hint text below sign-up link */
+.groupme-hint {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--clay);
+  margin-top: var(--space-xs);
 }
 
 /* ==========================================================================

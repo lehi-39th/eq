@@ -20,12 +20,20 @@ const activities = [
     showSignup: false,
     domains: ['Spiritual', 'Intellectual'],
     capacity: '~50',
-    lesson: {
-      date: 'Feb 8',
-      title: 'Beware of the Evil behind the Smiling Eyes',
-      author: 'Elder Neil L. Andersen',
-      url: 'https://www.churchofjesuschrist.org/study/general-conference/2005/04/beware-of-the-evil-behind-the-smiling-eyes?lang=eng',
-    },
+    lessons: [
+      {
+        date: 'Feb 22',
+        title: 'TBD',
+        author: 'TBD',
+        url: '',
+      },
+      {
+        date: 'Feb 8',
+        title: 'Beware of the Evil behind the Smiling Eyes',
+        author: 'Elder Neil L. Andersen',
+        url: 'https://www.churchofjesuschrist.org/study/general-conference/2005/04/beware-of-the-evil-behind-the-smiling-eyes?lang=eng',
+      },
+    ],
   },
   {
     id: 'ward-temple-night',
@@ -37,22 +45,31 @@ const activities = [
     status: 'active',
     showVote: false,
     showSignup: false,
+    link: { url: 'https://tos.churchofjesuschrist.org/', label: 'Make an Appointment' },
     domains: ['Spiritual', 'Social'],
     capacity: '5–20',
+    upcoming: [
+      {
+        title: 'April 17 · 7 PM',
+        instructor: '',
+        date: 'Next',
+        description: '',
+      },
+    ],
   },
   {
     id: 'rotating-lunch',
     emoji: '🍔',
-    title: 'WFH Rotating Lunch',
-    description: 'Work from home or nearby? Meet up for a quick midweek lunch at a different local spot each week.',
+    title: 'Rotating Lunch',
+    description: 'Meet up for a quick midweek lunch at a different local spot each week.',
     schedule: 'Wednesdays · 12–1 PM',
     location: 'Rotating local spots',
     status: 'active',
-    showVote: true,
+    showVote: false,
     domains: ['Social'],
     capacity: '5–10',
+    groupme: 'https://groupme.com/join_group/113272046/ncEs8mBl',
     rotation: [
-      { date: 'Feb 12', spot: 'Cafe Rio', address: '821 W State Rd, American Fork' },
       { date: 'Feb 19', spot: 'Zao Asian Cafe', address: '1249 E Main St, Lehi' },
       { date: 'Feb 26', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
       { date: 'Mar 5', spot: 'Costa Vida', address: '643 W Pacific Dr, American Fork' },
@@ -65,45 +82,49 @@ const activities = [
     emoji: '🎨',
     title: 'Hobby Nights',
     schedule: 'TBD',
-    location: 'TBD',
-    description: 'Knife making, woodworking, using AI, etc.',
-    status: 'interest',
-    showVote: true,
+    location: 'Ward church building',
+    description: 'Knife making, woodworking, using AI, and more.',
+    status: 'soon',
+    showVote: false,
+    showSignup: true,
     domains: ['Intellectual', 'Social'],
-    capacity: '5–10',
+    capacity: '5–20',
+    upcoming: [
+      {
+        title: 'Using AI Agents Crashcourse',
+        instructor: 'Hosted by Scott Murff',
+        date: 'TBD',
+        description: 'Learn to build in a fraction of the time:\n• Websites & apps (like this one!)\n• PowerPoints & polished documents\n• Excel models & data analysis\n\n$20/mo for Claude Code — the only cost.',
+      },
+    ],
   },
   {
-    id: 'morning-pickleball',
+    id: 'pickleball',
     emoji: '🏓',
-    title: 'Morning Pickleball',
-    schedule: '6–8 AM',
-    location: 'Stake center courts',
-    status: 'soon',
-    showVote: true,
+    title: 'Pickleball',
+    schedules: [
+      { days: 'Mon, Wed, Fri · 6–7:30 AM', location: 'Ward church building' },
+      { days: 'Tues & Thurs · 8:30–10 PM', location: 'Ward church building' },
+    ],
+    status: 'active',
+    showVote: false,
+    groupme: 'https://groupme.com/join_group/113272064/RUodqXcH',
     domains: ['Physical', 'Social'],
     capacity: '~12',
   },
   {
-    id: 'morning-basketball',
+    id: 'basketball',
     emoji: '🏀',
-    title: 'Morning Basketball',
-    schedule: '6–8 AM',
-    location: 'Stake center gym',
-    status: 'interest',
-    showVote: true,
+    title: 'Basketball (3-on-3)',
+    schedules: [
+      { days: 'Tues, Thurs, Sat · 6–7:30 AM', location: 'Ward church building' },
+      { days: 'Wednesdays · 8:30–10 PM', location: 'Ward church building' },
+    ],
+    status: 'active',
+    showVote: false,
+    groupme: 'https://groupme.com/join_group/113272026/vkvLZHYZ',
     domains: ['Physical', 'Social'],
     capacity: '~15',
-  },
-  {
-    id: 'evening-pickleball',
-    emoji: '🏓',
-    title: 'Evening Pickleball',
-    schedule: '8:30–10:30 PM',
-    location: 'Stake center courts',
-    status: 'soon',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '~12',
   },
   {
     id: 'softball',
@@ -117,17 +138,6 @@ const activities = [
     capacity: '~20',
   },
   {
-    id: 'evening-basketball',
-    emoji: '🏀',
-    title: 'Evening Basketball',
-    schedule: '8:30–10:30 PM',
-    location: 'Stake center gym',
-    status: 'interest',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '~15',
-  },
-  {
     id: 'evening-volleyball',
     emoji: '🏐',
     title: 'Evening Volleyball',
@@ -139,6 +149,17 @@ const activities = [
     capacity: '~12',
   },
   {
+    id: 'dodgeball',
+    emoji: '🤾',
+    title: 'Dodgeball',
+    schedule: 'TBD',
+    location: 'TBD',
+    status: 'interest',
+    showVote: true,
+    domains: ['Physical', 'Social'],
+    capacity: '~20',
+  },
+  {
     id: 'pinewood-derby',
     emoji: '🏎️',
     title: 'Adult Pinewood Derby',
@@ -148,40 +169,6 @@ const activities = [
     showVote: true,
     domains: ['Intellectual', 'Social'],
     capacity: '~25',
-  },
-  {
-    id: 'bowling',
-    emoji: '🎳',
-    title: 'Bowling',
-    schedule: 'Weeknight · TBD',
-    location: 'Jack & Jill Lanes · 113 S 600 E, Lehi',
-    status: 'interest',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '3–6',
-  },
-  {
-    id: 'rotating-home-project',
-    emoji: '🔨',
-    title: 'Rotating Home Projects',
-    schedule: 'Saturdays · TBD',
-    location: 'Rotating homes',
-    description: '3–5 elders help each other finish a home project.',
-    status: 'interest',
-    showVote: true,
-    domains: ['Social', 'Intellectual'],
-    capacity: '3–5',
-  },
-  {
-    id: 'road-biking',
-    emoji: '🚴',
-    title: 'Road Biking',
-    schedule: 'Saturdays · 7 AM · Apr–Oct',
-    location: 'Rotating routes',
-    status: 'interest',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '3–10',
   },
   {
     id: 'mountain-biking',
@@ -282,8 +269,21 @@ function cardHTML(activity, index) {
         <span>${activity.capacity} people</span>
       </div>` : '';
 
-  const detailsHTML = `
-    <div class="card-details">
+  const scheduleRows = activity.schedules
+    ? activity.schedules.map(s => `
+      <div class="card-detail">
+        <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6.5h12M5.5 3V1.5M10.5 3V1.5"/>
+        </svg>
+        <span>${s.days}</span>
+      </div>`).join('') + [...new Set(activity.schedules.map(s => s.location))].map(loc => `
+      <div class="card-detail">
+        <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 1.5C5.5 1.5 3 4 3 7c0 3.5 5 7.5 5 7.5s5-4 5-7.5c0-3-2.5-5.5-5-5.5z"/><circle cx="8" cy="7" r="1.5"/>
+        </svg>
+        <span>${loc}</span>
+      </div>`).join('')
+    : `
       <div class="card-detail">
         <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M2 6.5h12M5.5 3V1.5M10.5 3V1.5"/>
@@ -295,7 +295,11 @@ function cardHTML(activity, index) {
           <path d="M8 1.5C5.5 1.5 3 4 3 7c0 3.5 5 7.5 5 7.5s5-4 5-7.5c0-3-2.5-5.5-5-5.5z"/><circle cx="8" cy="7" r="1.5"/>
         </svg>
         <span>${activity.location}</span>
-      </div>
+      </div>`;
+
+  const detailsHTML = `
+    <div class="card-details">
+      ${scheduleRows}
       ${capacityHTML}
     </div>`;
 
@@ -303,11 +307,30 @@ function cardHTML(activity, index) {
     ? `<p class="card-desc">${escapeHTML(activity.description)}</p>`
     : '';
 
-  const lessonHTML = activity.lesson ? `
+  const lessonHTML = activity.lessons ? activity.lessons.map(l => `
+    <div class="card-lesson">
+      <div class="lesson-date">${l.date}</div>
+      ${l.url
+        ? `<a href="${l.url}" target="_blank" rel="noopener" class="lesson-title">${escapeHTML(l.title)}</a>`
+        : `<span class="lesson-title">${escapeHTML(l.title)}</span>`}
+      <div class="lesson-author">${escapeHTML(l.author)}</div>
+    </div>`).join('')
+    : activity.lesson ? `
     <div class="card-lesson">
       <div class="lesson-date">${activity.lesson.date}</div>
       <a href="${activity.lesson.url}" target="_blank" rel="noopener" class="lesson-title">${escapeHTML(activity.lesson.title)}</a>
       <div class="lesson-author">${escapeHTML(activity.lesson.author)}</div>
+    </div>` : '';
+
+  const upcomingHTML = activity.upcoming ? `
+    <div class="card-rotation">
+      ${activity.upcoming.map(u => `
+        <div class="rotation-item">
+          <div class="rotation-date">${u.date}</div>
+          <span class="lesson-title">${escapeHTML(u.title)}</span>
+          ${u.instructor ? `<div class="lesson-author"><em>${escapeHTML(u.instructor)}</em></div>` : ''}
+          ${u.description ? `<div class="rotation-address">${escapeHTML(u.description).replace(/\n/g, '<br>')}</div>` : ''}
+        </div>`).join('')}
     </div>` : '';
 
   const rotationHTML = activity.rotation ? `
@@ -331,7 +354,7 @@ function cardHTML(activity, index) {
       <span class="vote-count" id="vote-count-${activity.id}">${voteCount > 0 ? voteCount + ' interested' : ''}</span>
     </div>` : '';
 
-  const canSignup = (isActive || activity.status === 'soon') && activity.showSignup !== false;
+  const canSignup = (isActive || activity.status === 'soon') && activity.showSignup !== false && !activity.groupme;
 
   const namesHTML = canSignup ? `
     <div class="names-section">
@@ -343,9 +366,16 @@ function cardHTML(activity, index) {
       </div>
     </div>` : '';
 
-  const signupBtnHTML = canSignup
-    ? `<button class="btn-signup" data-activity="${activity.id}">Sign Up</button>`
+  const linkHTML = activity.link
+    ? `<a href="${activity.link.url}" target="_blank" rel="noopener" class="btn-signup">${escapeHTML(activity.link.label)}</a>`
     : '';
+
+  const signupBtnHTML = activity.groupme
+    ? `<a href="${activity.groupme}" target="_blank" rel="noopener" class="btn-signup">Join Group Chat</a>
+       <span class="groupme-hint">Uses GroupMe, a free group texting app. You may be prompted to install it.</span>`
+    : canSignup
+      ? `<button class="btn-signup" data-activity="${activity.id}">Sign Up</button>`
+      : '';
 
   const badgeHTML = isActive
     ? '<div class="badge-active">Happening</div>'
@@ -368,6 +398,8 @@ function cardHTML(activity, index) {
       ${detailsHTML}
       ${lessonHTML}
       ${descHTML}
+      ${upcomingHTML}
+      ${linkHTML}
       ${rotationHTML}
       ${voteHTML}
       ${canSignup ? namesHTML : interestPromptHTML}
