@@ -23,9 +23,9 @@ const activities = [
     lessons: [
       {
         date: 'Feb 22',
-        title: 'TBD',
-        author: 'TBD',
-        url: '',
+        title: 'The Family-Centered Gospel of Jesus Christ',
+        author: 'President Dallin H. Oaks',
+        url: 'https://www.churchofjesuschrist.org/study/general-conference/2025/10/58oaks?lang=eng',
       },
       {
         date: 'Feb 8',
@@ -70,11 +70,10 @@ const activities = [
     capacity: '5–10',
     groupme: 'https://groupme.com/join_group/113272046/ncEs8mBl',
     rotation: [
-      { date: 'Feb 19', spot: 'Zao Asian Cafe', address: '1249 E Main St, Lehi' },
-      { date: 'Feb 26', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
-      { date: 'Mar 5', spot: 'Costa Vida', address: '643 W Pacific Dr, American Fork' },
-      { date: 'Mar 12', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
-      { date: 'Mar 19', spot: 'Super Chix', address: '643 Pacific Dr, American Fork' },
+      { date: 'Feb 25', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
+      { date: 'Mar 4', spot: 'Costa Vida', address: '643 W Pacific Dr, American Fork' },
+      { date: 'Mar 11', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
+      { date: 'Mar 18', spot: 'Super Chix', address: '643 Pacific Dr, American Fork' },
     ],
   },
   {
