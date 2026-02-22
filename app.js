@@ -100,7 +100,7 @@ const activities = [
   {
     id: 'pickleball',
     emoji: '🏓',
-    title: 'Pickleball (Co-ed with RS)',
+    title: 'Pickleball (Spouses & Teens Welcome)',
     schedules: [
       { days: 'Mon, Wed, Fri · 6–7:30 AM', location: 'Ward church building' },
       { days: 'Tues & Thurs · 8:30–10 PM', location: 'Ward church building' },
@@ -128,7 +128,7 @@ const activities = [
   {
     id: 'softball',
     emoji: '🥎',
-    title: 'Softball (Co-ed with RS)',
+    title: 'Softball (Spouses & Teens Welcome)',
     schedule: '7 Saturdays: Apr 11 – May 23',
     location: 'Copper Top building',
     status: 'soon',
