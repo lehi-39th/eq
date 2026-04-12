@@ -149,6 +149,7 @@ const activities = [
     location: 'Stake center gym',
     status: 'interest',
     showVote: true,
+    groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
     domains: ['Physical', 'Social'],
     capacity: '~12',
   },
