@@ -22,16 +22,19 @@ const activities = [
     capacity: '~50',
     lessons: [
       {
-        date: 'Feb 22',
-        title: 'The Family-Centered Gospel of Jesus Christ',
-        author: 'President Dallin H. Oaks',
-        url: 'https://www.churchofjesuschrist.org/study/general-conference/2025/10/58oaks?lang=eng',
+        date: 'Apr 19',
+        title: 'Ward Conference — Stake-led EQ Discussion',
+        author: '',
+        url: '',
       },
       {
-        date: 'Feb 8',
-        title: 'Beware of the Evil behind the Smiling Eyes',
-        author: 'Elder Neil L. Andersen',
-        url: 'https://www.churchofjesuschrist.org/study/general-conference/2005/04/beware-of-the-evil-behind-the-smiling-eyes?lang=eng',
+        date: 'Apr 12',
+        title: 'About His Business',
+        author: 'Elder Patrick Kearon',
+        url: 'https://www.churchofjesuschrist.org/study/general-conference/2026/04/13kearon?lang=eng',
+        secondaryTitle: 'Closing Remarks',
+        secondaryAuthor: 'President Dallin H. Oaks',
+        secondaryUrl: 'https://www.churchofjesuschrist.org/study/general-conference/2026/04/59oaks?lang=eng',
       },
     ],
   },
@@ -46,11 +49,12 @@ const activities = [
     showVote: false,
     showSignup: false,
     link: { url: 'https://tos.churchofjesuschrist.org/', label: 'Make an Appointment' },
+    flyer: { url: 'temple-family-history-2026.pdf', label: 'Temple & Family History Plan' },
     domains: ['Spiritual', 'Social'],
     capacity: '5–20',
     upcoming: [
       {
-        title: 'April 17 · 7 PM',
+        title: 'April 17 · 7:30 PM',
         instructor: '',
         date: 'Next',
         description: '',
@@ -131,7 +135,7 @@ const activities = [
     title: 'Softball (Spouses & Teens Welcome)',
     schedule: '7 Saturdays: Apr 11 – May 23',
     location: 'Copper Top building',
-    status: 'soon',
+    status: 'pending',
     showVote: true,
     domains: ['Physical', 'Social'],
     capacity: '~20',
@@ -233,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Render cards ─────────────────────────────────────────────────────────
 function renderCards() {
   const activeActivities   = activities.filter(a => a.status === 'active');
-  const soonActivities     = activities.filter(a => a.status === 'soon');
+  const soonActivities     = activities.filter(a => a.status === 'soon' || a.status === 'pending');
   const interestActivities = activities.filter(a => a.status === 'interest');
 
   activeGrid.innerHTML   = activeActivities.map((a, i) => cardHTML(a, i)).join('');
@@ -312,7 +316,10 @@ function cardHTML(activity, index) {
       ${l.url
         ? `<a href="${l.url}" target="_blank" rel="noopener" class="lesson-title">${escapeHTML(l.title)}</a>`
         : `<span class="lesson-title">${escapeHTML(l.title)}</span>`}
-      <div class="lesson-author">${escapeHTML(l.author)}</div>
+      ${l.author ? `<div class="lesson-author">${escapeHTML(l.author)}</div>` : ''}
+      ${l.secondaryUrl ? `
+        <a href="${l.secondaryUrl}" target="_blank" rel="noopener" class="lesson-title lesson-secondary">${escapeHTML(l.secondaryTitle || '')}</a>
+        ${l.secondaryAuthor ? `<div class="lesson-author">${escapeHTML(l.secondaryAuthor)}</div>` : ''}` : ''}
     </div>`).join('')
     : activity.lesson ? `
     <div class="card-lesson">
@@ -353,7 +360,7 @@ function cardHTML(activity, index) {
       <span class="vote-count" id="vote-count-${activity.id}">${voteCount > 0 ? voteCount + ' interested' : ''}</span>
     </div>` : '';
 
-  const canSignup = (isActive || activity.status === 'soon') && activity.showSignup !== false && !activity.groupme;
+  const canSignup = (isActive || activity.status === 'soon' || activity.status === 'pending') && activity.showSignup !== false && !activity.groupme;
 
   const namesHTML = canSignup ? `
     <div class="names-section">
@@ -369,6 +376,10 @@ function cardHTML(activity, index) {
     ? `<a href="${activity.link.url}" target="_blank" rel="noopener" class="btn-signup">${escapeHTML(activity.link.label)}</a>`
     : '';
 
+  const flyerHTML = activity.flyer
+    ? `<a href="${activity.flyer.url}" target="_blank" rel="noopener" class="btn-flyer">${escapeHTML(activity.flyer.label)}</a>`
+    : '';
+
   const signupBtnHTML = activity.groupme
     ? `<a href="${activity.groupme}" target="_blank" rel="noopener" class="btn-signup">Join Group Chat</a>
        <span class="groupme-hint">Uses GroupMe, a free group texting app. You may be prompted to install it.</span>`
@@ -378,9 +389,11 @@ function cardHTML(activity, index) {
 
   const badgeHTML = isActive
     ? '<div class="badge-active">Happening</div>'
-    : activity.status === 'soon'
-      ? '<div class="badge-soon">Coming Soon</div>'
-      : '<div class="badge-interest">Gauging Interest</div>';
+    : activity.status === 'pending'
+      ? '<div class="badge-pending">Pending</div>'
+      : activity.status === 'soon'
+        ? '<div class="badge-soon">Coming Soon</div>'
+        : '<div class="badge-interest">Gauging Interest</div>';
 
   const interestPromptHTML = '';
 
@@ -399,6 +412,7 @@ function cardHTML(activity, index) {
       ${descHTML}
       ${upcomingHTML}
       ${linkHTML}
+      ${flyerHTML}
       ${rotationHTML}
       ${voteHTML}
       ${canSignup ? namesHTML : interestPromptHTML}

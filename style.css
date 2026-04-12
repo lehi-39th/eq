@@ -306,6 +306,12 @@ body {
   color: var(--terracotta);
 }
 
+.lesson-title.lesson-secondary {
+  margin-top: 0.4em;
+  padding-top: 0.4em;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
 .lesson-author {
   font-size: 0.8rem;
   color: var(--bark);
@@ -434,6 +440,21 @@ body {
   align-items: center;
   gap: var(--space-xs);
   background: var(--sky);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.badge-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--terracotta);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -577,6 +598,28 @@ body {
 
 .btn-signup:active {
   transform: scale(0.98);
+}
+
+.btn-flyer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.6em 1em;
+  background: transparent;
+  color: var(--terracotta);
+  border: 1.5px solid var(--terracotta);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  box-sizing: border-box;
+}
+.btn-flyer:hover {
+  background: rgba(184, 93, 60, 0.08);
 }
 
 /* GroupMe join button */
