@@ -75,7 +75,7 @@ const activities = [
     capacity: '5–10',
     groupme: 'https://groupme.com/join_group/113272046/ncEs8mBl',
     rotation: [
-      { date: 'Apr 15', spot: 'Village Baker', address: '3320 N Digital Dr, Lehi' },
+      { date: 'Apr 15', spot: 'R&R BBQ', address: '1628 W Traverse Pkwy, Lehi' },
       { date: 'Apr 22', spot: 'Panera Bread', address: '2204 W Hudson Ave, Lehi' },
       { date: 'Apr 29', spot: 'Houston Hot Chicken', address: '1085 E Main St, Lehi' },
       { date: 'May 6', spot: 'Slim Chickens', address: '1250 E State St, Lehi' },
