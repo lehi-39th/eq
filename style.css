@@ -374,6 +374,11 @@ body {
   gap: var(--space-sm);
 }
 
+.card-coordinator {
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
 .card-detail-icon {
   width: 16px;
   height: 16px;

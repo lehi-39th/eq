@@ -68,6 +68,7 @@ const activities = [
     description: 'Meet up for a quick midweek lunch at a different local spot each week.',
     schedule: 'Wednesdays · 12–1 PM',
     location: 'Rotating local spots',
+    coordinator: 'Jay Liddle',
     status: 'active',
     showVote: false,
     domains: ['Social'],
@@ -85,8 +86,9 @@ const activities = [
     id: 'softball',
     emoji: '🥎',
     title: 'Softball (Spouses & Teens Welcome)',
-    schedule: '7 Saturdays: Apr 11 – May 23',
+    schedule: 'Saturdays · 10 AM · Apr 19 – May 23',
     location: 'Copper Top building',
+    coordinator: 'Kevin Monroe',
     status: 'pending',
     showVote: false,
     groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
@@ -118,6 +120,7 @@ const activities = [
     id: 'pickleball',
     emoji: '🏓',
     title: 'Pickleball (Spouses & Teens Welcome)',
+    coordinator: 'Scott Murff',
     schedules: [
       { days: 'Mon, Wed, Fri · 6–7:30 AM', location: 'Ward church building' },
       { days: 'Tues & Thurs · 8:30–10 PM', location: 'Ward church building' },
@@ -274,6 +277,14 @@ function cardHTML(activity, index) {
         <span>${activity.capacity} people</span>
       </div>` : '';
 
+  const coordinatorHTML = activity.coordinator ? `
+      <div class="card-detail card-coordinator">
+        <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5 6.5 5z"/>
+        </svg>
+        <span>${escapeHTML(activity.coordinator)}</span>
+      </div>` : '';
+
   const scheduleRows = activity.schedules
     ? activity.schedules.map(s => `
       <div class="card-detail">
@@ -306,6 +317,7 @@ function cardHTML(activity, index) {
     <div class="card-details">
       ${scheduleRows}
       ${capacityHTML}
+      ${coordinatorHTML}
     </div>`;
 
   const descHTML = activity.description
