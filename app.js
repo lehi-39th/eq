@@ -282,7 +282,7 @@ function cardHTML(activity, index) {
         <svg class="card-detail-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5 6.5 5z"/>
         </svg>
-        <span>${escapeHTML(activity.coordinator)}</span>
+        <span>Coordinator: ${escapeHTML(activity.coordinator)}</span>
       </div>` : '';
 
   const scheduleRows = activity.schedules
