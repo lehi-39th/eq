@@ -22,12 +22,6 @@ const activities = [
     capacity: '~50',
     lessons: [
       {
-        date: 'Apr 19',
-        title: 'Ward Conference — Stake-led EQ Discussion',
-        author: '',
-        url: '',
-      },
-      {
         date: 'Apr 12',
         title: 'About His Business',
         author: 'Elder Patrick Kearon',
@@ -35,6 +29,12 @@ const activities = [
         secondaryTitle: 'Closing Remarks',
         secondaryAuthor: 'President Dallin H. Oaks',
         secondaryUrl: 'https://www.churchofjesuschrist.org/study/general-conference/2026/04/59oaks?lang=eng',
+      },
+      {
+        date: 'Apr 19',
+        title: 'Ward Conference — Stake-led EQ Discussion',
+        author: '',
+        url: '',
       },
     ],
   },
