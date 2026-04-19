@@ -62,6 +62,17 @@ const activities = [
     ],
   },
   {
+    id: 'ward-campout',
+    emoji: '⛺',
+    title: 'Ward Campout',
+    schedule: 'Date TBD',
+    location: 'TBD',
+    status: 'active',
+    showVote: false,
+    showSignup: false,
+    domains: ['Social'],
+  },
+  {
     id: 'rotating-lunch',
     emoji: '🍔',
     title: 'Rotating Lunch',
