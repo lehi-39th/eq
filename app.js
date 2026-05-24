@@ -13,7 +13,7 @@ const activities = [
     id: 'eq-lessons',
     emoji: '📖',
     title: 'EQ Sunday Lessons',
-    schedule: '2nd & 4th Sundays',
+    schedule: '2nd & 4th Sundays (weekly starting Sep 6)',
     location: 'Ward building',
     status: 'active',
     showVote: false,
@@ -22,18 +22,81 @@ const activities = [
     capacity: '~50',
     lessons: [
       {
-        date: 'Apr 12',
-        title: 'About His Business',
-        author: 'Elder Patrick Kearon',
-        url: 'https://www.churchofjesuschrist.org/study/general-conference/2026/04/13kearon?lang=eng',
-        secondaryTitle: 'Closing Remarks',
-        secondaryAuthor: 'President Dallin H. Oaks',
-        secondaryUrl: 'https://www.churchofjesuschrist.org/study/general-conference/2026/04/59oaks?lang=eng',
+        date: 'May 24',
+        title: 'All Who Have Endured Valiantly',
+        author: 'Elder Bednar',
+        url: '',
       },
       {
-        date: 'Apr 19',
-        title: 'Ward Conference — Stake-led EQ Discussion',
+        date: 'Jun 14',
+        title: 'Best Days and Worst Days',
+        author: 'Sister Freeman',
+        url: '',
+      },
+      {
+        date: 'Jun 28',
+        title: 'The Character of Christ',
+        author: 'President Christofferson',
+        url: '',
+      },
+      {
+        date: 'Jul 12',
+        title: 'Alive in Christ',
+        author: 'President Oaks',
+        url: '',
+      },
+      {
+        date: 'Jul 26',
+        title: 'Love All; Love Each',
+        author: 'Elder Caussé',
+        url: '',
+      },
+      {
+        date: 'Aug 9',
+        title: 'Ministering + Lost Luggage, Redeemed Souls',
+        author: 'Sister Yee & Elder Stevenson',
+        url: '',
+      },
+      {
+        date: 'Aug 23',
+        title: 'Jesus Christ Is the Way / Choose Jesus as Your Guide',
+        author: 'Elder Holmes & Elder Rowe',
+        url: '',
+      },
+      {
+        date: 'Sep 6',
+        title: 'Come Home',
+        author: 'Elder Gilbert',
+        url: '',
+      },
+      {
+        date: 'Sep 13',
+        title: '— Stake Conference (no EQ lesson) —',
         author: '',
+        url: '',
+      },
+      {
+        date: 'Sep 20',
+        title: 'Prayers for Peace',
+        author: 'President Eyring',
+        url: '',
+      },
+      {
+        date: 'Sep 27',
+        title: 'Because of Jesus Christ',
+        author: 'Elder Renlund',
+        url: '',
+      },
+      {
+        date: 'Oct 3–4',
+        title: '— General Conference (no EQ lesson) —',
+        author: '',
+        url: '',
+      },
+      {
+        date: 'Oct 11',
+        title: "Teacher's pick from October 2026 Conference",
+        author: '(conference debrief)',
         url: '',
       },
     ],
@@ -54,23 +117,43 @@ const activities = [
     capacity: '5–20',
     upcoming: [
       {
-        title: 'April 17 · 7:30 PM',
+        title: 'July 10 · 7:30 PM',
         instructor: '',
         date: 'Next',
-        description: '',
+        description: 'Families with youth: consider attending for baptisms together.',
       },
     ],
   },
   {
     id: 'ward-campout',
     emoji: '⛺',
-    title: 'Ward Campout',
-    schedule: 'Date TBD',
-    location: 'TBD',
+    title: 'Ward & Neighbor Campout',
+    schedule: 'June 12–13 (Fri–Sat)',
+    location: 'Granite Flats Campground · American Fork Canyon',
+    coordinator: 'Bryce Packer',
     status: 'active',
     showVote: false,
     showSignup: false,
-    domains: ['Social'],
+    domains: ['Social', 'Spiritual'],
+    description: 'Campground reserved Friday night through Saturday evening. Fishing available at nearby Tibble Fork Reservoir. Contact Bryce: (240) 274-3216 or brycepacker@gmail.com',
+    links: [
+      { url: 'https://www.recreation.gov/camping/campsites/33654', label: 'Campsite Info' },
+      { url: 'https://www.google.com/maps/dir/?api=1&destination=Granite+Flats+Campground,+American+Fork+Canyon,+UT', label: 'Driving Directions' },
+      { url: 'https://dwrapps.utah.gov/fishing/?NA=Tibble%20Fork%20Reservoir', label: 'Fishing Report' },
+    ],
+  },
+  {
+    id: 'church-cleaning',
+    emoji: '🧹',
+    title: 'Church Building Cleaning',
+    schedule: 'Saturdays · 9–10 AM · May & June',
+    location: 'Ward church building',
+    coordinator: 'Jeramy Herrin',
+    status: 'active',
+    showVote: false,
+    showSignup: false,
+    domains: ['Service'],
+    description: 'Our ward has the building cleaning assignment for May and June. Come lend a hand!',
   },
   {
     id: 'rotating-lunch',
@@ -86,11 +169,12 @@ const activities = [
     capacity: '5–10',
     groupme: 'https://groupme.com/join_group/113272046/ncEs8mBl',
     rotation: [
-      { date: 'Apr 15', spot: 'R&R BBQ', address: '1628 W Traverse Pkwy, Lehi' },
-      { date: 'Apr 22', spot: 'Panera Bread', address: '2204 W Hudson Ave, Lehi' },
-      { date: 'Apr 29', spot: 'Houston Hot Chicken', address: '1085 E Main St, Lehi' },
-      { date: 'May 6', spot: 'Slim Chickens', address: '1250 E State St, Lehi' },
-      { date: 'May 13', spot: 'Cafe Zupas', address: '3750 N Thanksgiving Way, Lehi' },
+      { date: 'May 28', spot: 'Cafe Rio', address: '821 W State Rd, American Fork' },
+      { date: 'Jun 4', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
+      { date: 'Jun 11', spot: 'Super Chix', address: '643 Pacific Dr, Ste 102, American Fork' },
+      { date: 'Jun 18', spot: 'Zao Asian Cafe', address: '1249 E Main St, Ste 100, Lehi' },
+      { date: 'Jun 25', spot: 'The Smoked Taco', address: '933 W 500 N, Ste 102, American Fork' },
+      { date: 'Jul 2', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
     ],
   },
   {
@@ -100,7 +184,7 @@ const activities = [
     schedule: 'Saturdays · 10 AM · Apr 19 – May 23',
     location: 'Copper Top building',
     coordinator: 'Kevin Monroe',
-    status: 'pending',
+    status: 'past',
     showVote: false,
     groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
     domains: ['Physical', 'Social'],
@@ -113,17 +197,23 @@ const activities = [
     schedule: 'TBD',
     location: 'Ward church building',
     description: 'Knife making, woodworking, using AI, and more.',
-    status: 'soon',
+    status: 'active',
     showVote: false,
     showSignup: true,
     domains: ['Intellectual', 'Social'],
     capacity: '5–20',
     upcoming: [
       {
+        title: 'Next Hobby Night',
+        instructor: 'Topic & date TBD',
+        date: 'Coming Soon',
+        description: 'Have an idea or want to host? Let us know below!',
+      },
+      {
         title: 'Using AI Agents Crashcourse',
         instructor: 'Hosted by Scott Murff',
-        date: 'TBD',
-        description: 'Learn to build in a fraction of the time:\n• Websites & apps (like this one!)\n• PowerPoints & polished documents\n• Excel models & data analysis\n\n$20/mo for Claude Code — the only cost.',
+        date: 'May 7 ✓',
+        description: 'Built websites, PowerPoints, Excel models & more with AI agents.',
       },
     ],
   },
@@ -195,8 +285,9 @@ const activities = [
     title: 'Mountain Biking',
     schedule: 'Saturdays · 7 AM · May–Oct',
     location: 'Rotating trailheads',
-    status: 'interest',
-    showVote: true,
+    status: 'soon',
+    showVote: false,
+    groupme: 'https://groupme.com/join_group/113930045/BMtHcNkG',
     domains: ['Physical', 'Social'],
     capacity: '3–10',
   },
@@ -241,6 +332,7 @@ const signupName    = document.getElementById('signup-name');
 const btnSubmit     = document.getElementById('btn-submit');
 const signupPhone   = document.getElementById('signup-phone');
 const modalError    = document.getElementById('modal-error');
+const pastGrid      = document.getElementById('past-grid');
 const footerYear    = document.getElementById('footer-year');
 
 // ── Init ─────────────────────────────────────────────────────────────────
@@ -255,10 +347,12 @@ function renderCards() {
   const activeActivities   = activities.filter(a => a.status === 'active');
   const soonActivities     = activities.filter(a => a.status === 'soon' || a.status === 'pending');
   const interestActivities = activities.filter(a => a.status === 'interest');
+  const pastActivities     = activities.filter(a => a.status === 'past');
 
   activeGrid.innerHTML   = activeActivities.map((a, i) => cardHTML(a, i)).join('');
   soonGrid.innerHTML     = soonActivities.map((a, i) => cardHTML(a, i + activeActivities.length)).join('');
   interestGrid.innerHTML = interestActivities.map((a, i) => cardHTML(a, i + activeActivities.length + soonActivities.length)).join('');
+  pastGrid.innerHTML     = pastActivities.map((a, i) => cardHTML(a, i + activeActivities.length + soonActivities.length + interestActivities.length)).join('');
 
   // Bind event listeners
   document.querySelectorAll('.btn-signup').forEach(btn => {
@@ -335,7 +429,8 @@ function cardHTML(activity, index) {
     ? `<p class="card-desc">${escapeHTML(activity.description)}</p>`
     : '';
 
-  const lessonHTML = activity.lessons ? activity.lessons.map(l => `
+  const filteredLessons = activity.lessons ? filterPastDates(activity.lessons, 'date').slice(0, 3) : null;
+  const lessonHTML = filteredLessons && filteredLessons.length > 0 ? filteredLessons.map(l => `
     <div class="card-lesson">
       <div class="lesson-date">${l.date}</div>
       ${l.url
@@ -364,9 +459,10 @@ function cardHTML(activity, index) {
         </div>`).join('')}
     </div>` : '';
 
-  const rotationHTML = activity.rotation ? `
+  const filteredRotation = activity.rotation ? filterPastDates(activity.rotation, 'date').slice(0, 3) : null;
+  const rotationHTML = filteredRotation && filteredRotation.length > 0 ? `
     <div class="card-rotation">
-      ${activity.rotation.map(r => {
+      ${filteredRotation.map(r => {
         const mapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(r.address);
         return `
         <div class="rotation-item">
@@ -397,9 +493,11 @@ function cardHTML(activity, index) {
       </div>
     </div>` : '';
 
-  const linkHTML = activity.link
-    ? `<a href="${activity.link.url}" target="_blank" rel="noopener" class="btn-signup">${escapeHTML(activity.link.label)}</a>`
-    : '';
+  const linkHTML = activity.links
+    ? activity.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="btn-signup">${escapeHTML(l.label)}</a>`).join('')
+    : activity.link
+      ? `<a href="${activity.link.url}" target="_blank" rel="noopener" class="btn-signup">${escapeHTML(activity.link.label)}</a>`
+      : '';
 
   const flyerHTML = activity.flyer
     ? `<a href="${activity.flyer.url}" target="_blank" rel="noopener" class="btn-flyer">${escapeHTML(activity.flyer.label)}</a>`
@@ -418,7 +516,9 @@ function cardHTML(activity, index) {
       ? '<div class="badge-pending">Pending</div>'
       : activity.status === 'soon'
         ? '<div class="badge-soon">Coming Soon</div>'
-        : '<div class="badge-interest">Gauging Interest</div>';
+        : activity.status === 'past'
+          ? '<div class="badge-past">Completed</div>'
+          : '<div class="badge-interest">Gauging Interest</div>';
 
   const interestPromptHTML = '';
 
@@ -637,6 +737,22 @@ ideaForm.addEventListener('submit', async (e) => {
 });
 
 // ── Helpers ──────────────────────────────────────────────────────────────
+function parseActivityDate(dateStr) {
+  const clean = dateStr.replace(/–.*/, '').trim();
+  const currentYear = new Date().getFullYear();
+  const parsed = new Date(`${clean} ${currentYear}`);
+  return isNaN(parsed) ? null : parsed;
+}
+
+function filterPastDates(items, dateKey) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return items.filter(item => {
+    const d = parseActivityDate(item[dateKey]);
+    return !d || d >= today;
+  });
+}
+
 function escapeHTML(str) {
   const div = document.createElement('div');
   div.textContent = str;

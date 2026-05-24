@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -57,6 +57,16 @@
       <p class="section-desc">Tap ✋ to let us know if this sounds like something you'd do.</p>
       <div class="card-grid" id="interest-grid">
         <!-- Interest cards injected by JS -->
+      </div>
+    </section>
+
+    <section class="section past-section">
+      <div class="section-label">
+        <span class="section-dot past-dot"></span>
+        Completed
+      </div>
+      <div class="card-grid" id="past-grid">
+        <!-- Past activity cards injected by JS -->
       </div>
     </section>
 
@@ -127,7 +137,7 @@
     <p>Lehi 39th Ward Elders Quorum &middot; <span id="footer-year"></span></p>
   </footer>
 
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=8"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
