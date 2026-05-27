@@ -169,12 +169,12 @@ const activities = [
     capacity: '5–10',
     groupme: 'https://groupme.com/join_group/113272046/ncEs8mBl',
     rotation: [
-      { date: 'May 28', spot: 'Cafe Rio', address: '821 W State Rd, American Fork' },
-      { date: 'Jun 4', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
-      { date: 'Jun 11', spot: 'Super Chix', address: '643 Pacific Dr, Ste 102, American Fork' },
-      { date: 'Jun 18', spot: 'Zao Asian Cafe', address: '1249 E Main St, Ste 100, Lehi' },
-      { date: 'Jun 25', spot: 'The Smoked Taco', address: '933 W 500 N, Ste 102, American Fork' },
-      { date: 'Jul 2', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
+      { date: 'May 27', spot: 'Cafe Rio', address: '821 W State Rd, American Fork' },
+      { date: 'Jun 3', spot: 'Super Chix', address: '643 Pacific Dr, Ste 102, American Fork' },
+      { date: 'Jun 10', spot: 'Blaze Pizza', address: '3370 Digital Dr, Lehi' },
+      { date: 'Jun 17', spot: 'Zao Asian Cafe', address: '1249 E Main St, Ste 100, Lehi' },
+      { date: 'Jun 24', spot: 'The Smoked Taco', address: '933 W 500 N, Ste 102, American Fork' },
+      { date: 'Jul 1', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
     ],
   },
   {
