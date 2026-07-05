@@ -131,29 +131,36 @@ const activities = [
     schedule: 'June 12–13 (Fri–Sat)',
     location: 'Granite Flats Campground · American Fork Canyon',
     coordinator: 'Bryce Packer',
-    status: 'active',
+    status: 'past',
     showVote: false,
     showSignup: false,
     domains: ['Social', 'Spiritual'],
-    description: 'Campground reserved Friday night through Saturday evening. Fishing available at nearby Tibble Fork Reservoir. Contact Bryce: (240) 274-3216 or brycepacker@gmail.com',
-    links: [
-      { url: 'https://www.recreation.gov/camping/campsites/33654', label: 'Campsite Info' },
-      { url: 'https://www.google.com/maps/dir/?api=1&destination=Granite+Flats+Campground,+American+Fork+Canyon,+UT', label: 'Driving Directions' },
-      { url: 'https://dwrapps.utah.gov/fishing/?NA=Tibble%20Fork%20Reservoir', label: 'Fishing Report' },
-    ],
+    recap: 'Families camped Friday through Saturday at Granite Flats in American Fork Canyon, with fishing at nearby Tibble Fork Reservoir. Thanks to Bryce Packer for organizing! 🏕️🔥',
+  },
+  {
+    id: 'ward-campout-2027',
+    emoji: '⛺',
+    title: 'Ward & Neighbor Campout 2027',
+    schedule: 'Summer 2027 · dates TBD',
+    location: 'American Fork Canyon',
+    status: 'soon',
+    showVote: false,
+    showSignup: false,
+    domains: ['Social', 'Spiritual'],
+    description: 'Save the date — the ward & neighbor campout returns next summer. Details coming soon!',
   },
   {
     id: 'church-cleaning',
     emoji: '🧹',
     title: 'Church Building Cleaning',
-    schedule: 'Saturdays · 9–10 AM · May & June',
+    // schedule, status, and description are set dynamically — see applyCleaningAssignment()
+    schedule: 'Saturdays · 9–10 AM',
     location: 'Ward church building',
     coordinator: 'Jeramy Herrin',
     status: 'active',
     showVote: false,
     showSignup: false,
     domains: ['Service'],
-    description: 'Our ward has the building cleaning assignment for May and June. Come lend a hand!',
   },
   {
     id: 'rotating-lunch',
@@ -176,19 +183,6 @@ const activities = [
       { date: 'Jun 24', spot: 'The Smoked Taco', address: '933 W 500 N, Ste 102, American Fork' },
       { date: 'Jul 1', spot: 'Vessel Kitchen', address: '197 NW State St, American Fork' },
     ],
-  },
-  {
-    id: 'softball',
-    emoji: '🥎',
-    title: 'Softball (Spouses & Teens Welcome)',
-    schedule: 'Saturdays · 10 AM · Apr 19 – May 23',
-    location: 'Copper Top building',
-    coordinator: 'Kevin Monroe',
-    status: 'past',
-    showVote: false,
-    groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
-    domains: ['Physical', 'Social'],
-    capacity: '~20',
   },
   {
     id: 'hobby-nights',
@@ -218,55 +212,18 @@ const activities = [
     ],
   },
   {
-    id: 'pickleball',
-    emoji: '🏓',
-    title: 'Pickleball (Spouses & Teens Welcome)',
-    coordinator: 'Scott Murff',
-    schedules: [
-      { days: 'Mon, Wed, Fri · 6–7:30 AM', location: 'Ward church building' },
-      { days: 'Tues & Thurs · 8:30–10 PM', location: 'Ward church building' },
-    ],
+    id: 'eq-activity-night',
+    emoji: '🏆',
+    title: 'EQ Activity Night',
+    schedule: 'Thursdays · 8–10 PM',
+    location: 'Ward church building',
     status: 'active',
     showVote: false,
-    groupme: 'https://groupme.com/join_group/113272064/RUodqXcH',
-    domains: ['Physical', 'Social'],
-    capacity: '~12',
-  },
-  {
-    id: 'basketball',
-    emoji: '🏀',
-    title: 'Basketball (3-on-3)',
-    schedules: [
-      { days: 'Tues, Thurs, Sat · 6–7:30 AM', location: 'Ward church building' },
-      { days: 'Wednesdays · 8:30–10 PM', location: 'Ward church building' },
-    ],
-    status: 'active',
-    showVote: false,
-    groupme: 'https://groupme.com/join_group/113272026/vkvLZHYZ',
+    showSignup: false,
+    groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
     domains: ['Physical', 'Social'],
     capacity: '~15',
-  },
-  {
-    id: 'evening-volleyball',
-    emoji: '🏐',
-    title: 'Evening Volleyball',
-    schedule: '8:30–10:30 PM',
-    location: 'Stake center gym',
-    status: 'interest',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '~12',
-  },
-  {
-    id: 'dodgeball',
-    emoji: '🤾',
-    title: 'Dodgeball',
-    schedule: 'TBD',
-    location: 'TBD',
-    status: 'interest',
-    showVote: true,
-    domains: ['Physical', 'Social'],
-    capacity: '~20',
+    description: 'One weeknight, whatever the group is feeling — 🏀 basketball, 🏐 volleyball, 🏓 pickleball, 🥎 softball, 🤾 dodgeball, or a 🎨 hobby night. Watch the group chat each week to see what we\'re playing.',
   },
   {
     id: 'pinewood-derby',
@@ -338,6 +295,7 @@ const footerYear    = document.getElementById('footer-year');
 // ── Init ─────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   footerYear.textContent = new Date().getFullYear();
+  applyCleaningAssignment();
   renderCards();
   loadData();
 });
@@ -427,6 +385,10 @@ function cardHTML(activity, index) {
 
   const descHTML = activity.description
     ? `<p class="card-desc">${escapeHTML(activity.description)}</p>`
+    : '';
+
+  const recapHTML = activity.recap
+    ? `<p class="card-recap">${escapeHTML(activity.recap)}</p>`
     : '';
 
   const filteredLessons = activity.lessons ? filterPastDates(activity.lessons, 'date').slice(0, 3) : null;
@@ -532,6 +494,7 @@ function cardHTML(activity, index) {
       </div>
       ${badgeHTML}
       ${domainHTML}
+      ${recapHTML}
       ${detailsHTML}
       ${lessonHTML}
       ${descHTML}
@@ -737,6 +700,33 @@ ideaForm.addEventListener('submit', async (e) => {
 });
 
 // ── Helpers ──────────────────────────────────────────────────────────────
+// ── Dynamic building-cleaning assignment ─────────────────────────────────
+// Three wards share this building on rotating 2-month blocks, so our ward's
+// turn comes around every 6 months: May–June and November–December.
+function getCleaningWindow(now) {
+  const y = now.getFullYear();
+  const m = now.getMonth() + 1; // 1–12
+  if (m === 5 || m === 6)   return { active: true,  label: 'May–June',          year: y };
+  if (m === 11 || m === 12) return { active: true,  label: 'November–December', year: y };
+  if (m < 5)                return { active: false, label: 'May–June',          year: y };
+  return { active: false, label: 'November–December', year: y }; // Jul–Oct → next Nov
+}
+
+function applyCleaningAssignment(now = new Date()) {
+  const activity = activities.find(a => a.id === 'church-cleaning');
+  if (!activity) return;
+  const w = getCleaningWindow(now);
+  if (w.active) {
+    activity.status = 'active';
+    activity.schedule = `Saturdays · 9–10 AM · ${w.label} ${w.year}`;
+    activity.description = `Our ward has the building cleaning assignment for ${w.label}. Come lend a hand!`;
+  } else {
+    activity.status = 'soon';
+    activity.schedule = `Next assignment: ${w.label} ${w.year}`;
+    activity.description = `Three wards share this building, so our cleaning turn comes around every few months. We're off until ${w.label} ${w.year} — we'll post the Saturday schedule when it's our turn again.`;
+  }
+}
+
 function parseActivityDate(dateStr) {
   const clean = dateStr.replace(/–.*/, '').trim();
   const currentYear = new Date().getFullYear();

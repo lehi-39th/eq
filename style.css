@@ -330,6 +330,16 @@ body {
   font-style: italic;
 }
 
+.card-recap {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--forest-dark);
+  background: var(--cream);
+  border-left: 3px solid var(--forest);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+}
+
 .card-rotation {
   display: flex;
   flex-direction: column;
