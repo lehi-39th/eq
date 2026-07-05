@@ -71,7 +71,7 @@ const activities = [
       },
       {
         date: 'Sep 13',
-        title: '— Stake Conference (no EQ lesson) —',
+        title: 'Stake Conference (no EQ lesson)',
         author: '',
         url: '',
       },
@@ -89,7 +89,7 @@ const activities = [
       },
       {
         date: 'Oct 3–4',
-        title: '— General Conference (no EQ lesson) —',
+        title: 'General Conference (no EQ lesson)',
         author: '',
         url: '',
       },
@@ -147,7 +147,7 @@ const activities = [
     showVote: false,
     showSignup: false,
     domains: ['Social', 'Spiritual'],
-    description: 'Save the date — the ward & neighbor campout returns next summer. Details coming soon!',
+    description: 'Save the date. The ward & neighbor campout returns next summer. Details coming soon!',
   },
   {
     id: 'church-cleaning',
@@ -223,7 +223,7 @@ const activities = [
     groupme: 'https://groupme.com/join_group/114317532/EqLFwbIZ',
     domains: ['Physical', 'Social'],
     capacity: '~15',
-    description: 'One weeknight, whatever the group is feeling — 🏀 basketball, 🏐 volleyball, 🏓 pickleball, 🥎 softball, 🤾 dodgeball, or a 🎨 hobby night. Watch the group chat each week to see what we\'re playing.',
+    description: 'One weeknight, whatever the group is feeling: 🏀 basketball, 🏐 volleyball, 🏓 pickleball, 🥎 softball, 🤾 dodgeball, or a 🎨 hobby night. Watch the group chat each week to see what we\'re playing.',
   },
   {
     id: 'pinewood-derby',
@@ -723,7 +723,7 @@ function applyCleaningAssignment(now = new Date()) {
   } else {
     activity.status = 'soon';
     activity.schedule = `Next assignment: ${w.label} ${w.year}`;
-    activity.description = `Three wards share this building, so our cleaning turn comes around every few months. We're off until ${w.label} ${w.year} — we'll post the Saturday schedule when it's our turn again.`;
+    activity.description = `Three wards share this building, so our cleaning turn comes around every few months. We're off until ${w.label} ${w.year}, and we'll post the Saturday schedule when it's our turn again.`;
   }
 }
 
