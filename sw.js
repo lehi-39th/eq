@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eq-v11';
+const CACHE_NAME = 'eq-v12';
 const ASSETS = [
   '/eq/',
   '/eq/index.html',
